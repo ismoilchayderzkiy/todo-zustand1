@@ -15,7 +15,7 @@ const App: React.FC = () => {
 	const [statusAdd, setStatusAdd] = useState<boolean | null>(null)
 	const [idx, setIdx] = useState<number | null>(null)
 
-	const { data, getData } = useCounter((state) => state)
+	const { data, getData } = useCounter()
 
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 	const [isModalOpen1, setIsModalOpen1] = useState<boolean>(false)
@@ -87,30 +87,32 @@ const App: React.FC = () => {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-white p-8">
-			<div className="max-w-2xl mx-auto space-y-8">
-				<h1 className="text-3xl font-bold text-center text-gray-800">User Manager</h1>
+		<div className='min-h-screen bg-gradient-to-br from-gray-50 to-white p-8'>
+			<div className='max-w-2xl mx-auto space-y-8'>
+				<h1 className='text-3xl font-bold text-center text-gray-800'>
+					User Manager
+				</h1>
 
 				<Button
-					type="primary"
+					type='primary'
 					onClick={showModal}
-					className="w-full !bg-indigo-600 hover:!bg-indigo-700 text-white py-2 text-lg font-semibold rounded-lg"
+					className='w-full !bg-indigo-600 hover:!bg-indigo-700 text-white py-2 text-lg font-semibold rounded-lg'
 				>
 					Add New User
 				</Button>
 
-				<div className="space-y-4">
+				<div className='space-y-4'>
 					{data.map((user: User) => (
 						<div
 							key={user.id}
-							className="flex items-center justify-between p-4 bg-white rounded-lg shadow hover:shadow-md transition"
+							className='flex items-center justify-between p-4 bg-white rounded-lg shadow hover:shadow-md transition'
 						>
 							<div>
-								<p className="text-lg font-medium text-gray-900">{user.name}</p>
-								<p className="text-sm text-gray-400">ID: {user.id}</p>
+								<p className='text-lg font-medium text-gray-900'>{user.name}</p>
+								<p className='text-sm text-gray-400'>ID: {user.id}</p>
 							</div>
 
-							<div className="flex gap-2">
+							<div className='flex gap-2'>
 								<button
 									onClick={() => editStatus(user.id)}
 									className={`px-3 py-1 rounded text-sm font-medium text-white transition ${
@@ -123,13 +125,13 @@ const App: React.FC = () => {
 								</button>
 								<button
 									onClick={() => showModal1(user)}
-									className="px-3 py-1 rounded text-sm font-medium bg-yellow-400 hover:bg-yellow-500 text-white"
+									className='px-3 py-1 rounded text-sm font-medium bg-yellow-400 hover:bg-yellow-500 text-white'
 								>
 									Edit
 								</button>
 								<button
 									onClick={() => deleteUser(user.id)}
-									className="px-3 py-1 rounded text-sm font-medium bg-red-500 hover:bg-red-600 text-white"
+									className='px-3 py-1 rounded text-sm font-medium bg-red-500 hover:bg-red-600 text-white'
 								>
 									Delete
 								</button>
@@ -140,12 +142,17 @@ const App: React.FC = () => {
 			</div>
 
 			{/* Add User Modal */}
-			<Modal title="Add User" open={isModalOpen} footer={null} onCancel={handleCancel}>
-				<form onSubmit={addUser} className="space-y-4 mt-4">
+			<Modal
+				title='Add User'
+				open={isModalOpen}
+				footer={null}
+				onCancel={handleCancel}
+			>
+				<form onSubmit={addUser} className='space-y-4 mt-4'>
 					<Input
-						placeholder="Enter name"
+						placeholder='Enter name'
 						value={inpAddName}
-						onChange={(e) => setInpAddName(e.target.value)}
+						onChange={e => setInpAddName(e.target.value)}
 					/>
 					<Select
 						style={{ width: '100%' }}
@@ -155,13 +162,13 @@ const App: React.FC = () => {
 							{ value: false, label: 'Inactive' },
 						]}
 						value={statusAdd}
-						onChange={(value) => setStatusAdd(value)}
-						placeholder="Select status"
+						onChange={value => setStatusAdd(value)}
+						placeholder='Select status'
 					/>
 					<Button
-						type="primary"
-						htmlType="submit"
-						className="w-full !bg-indigo-600 hover:!bg-indigo-700 text-white"
+						type='primary'
+						htmlType='submit'
+						className='w-full !bg-indigo-600 hover:!bg-indigo-700 text-white'
 					>
 						Add
 					</Button>
@@ -169,17 +176,22 @@ const App: React.FC = () => {
 			</Modal>
 
 			{/* Edit User Modal */}
-			<Modal title="Edit User" open={isModalOpen1} footer={null} onCancel={handleCancel1}>
-				<form onSubmit={edited} className="space-y-4 mt-4">
+			<Modal
+				title='Edit User'
+				open={isModalOpen1}
+				footer={null}
+				onCancel={handleCancel1}
+			>
+				<form onSubmit={edited} className='space-y-4 mt-4'>
 					<Input
-						placeholder="Edit name"
+						placeholder='Edit name'
 						value={inpEditName}
-						onChange={(e) => setInpEditName(e.target.value)}
+						onChange={e => setInpEditName(e.target.value)}
 					/>
 					<Button
-						type="primary"
-						htmlType="submit"
-						className="w-full !bg-green-600 hover:!bg-green-700 text-white"
+						type='primary'
+						htmlType='submit'
+						className='w-full !bg-green-600 hover:!bg-green-700 text-white'
 					>
 						Save
 					</Button>
